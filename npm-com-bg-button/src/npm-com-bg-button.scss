@@ -1,0 +1,179 @@
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+$npm-com-bg-button-width: r(100);
+$npm-com-bg-button-height: r(32);
+$npm-com-bg-button-color-primary: #4F65FE !default;
+$npm-com-bg-button-color-white: #fff !default;
+$npm-com-bg-button-color-black: #000 !default;
+$npm-com-bg-color-text-placeholder: #c0c4cc !default;
+$npm-com-bg-font-size-base: r(14) !default;
+$npm-com-bg-border-color-lighter: #ebeef5 !default;
+
+@mixin button-size($width, $height, $font-size, $border-radius) {
+  // width: $width;
+  padding: 0 r(25);
+  height: $height;
+  white-space: nowrap;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+@mixin when($state-prefix, $state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+.npm-com-bg-button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid $npm-com-bg-button-color-primary;
+  color: $npm-com-bg-button-color-primary;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: 0.1s;
+  // font-weight: 500;
+  user-select: none;
+
+  & + & {
+    margin-left: r(10);
+  }
+
+  @include button-size($npm-com-bg-button-width, $npm-com-bg-button-height, $npm-com-bg-font-size-base, 4px);
+
+  &:hover,
+  &:focus {
+    color: $npm-com-bg-button-color-primary;
+    border-color: mix($npm-com-bg-button-color-white, $npm-com-bg-button-color-primary, 70%);
+    background-color: mix($npm-com-bg-button-color-white, $npm-com-bg-button-color-primary, 90%);
+  }
+
+  &:active {
+    color: mix($npm-com-bg-button-color-black, $npm-com-bg-button-color-primary, 10%);
+    border-color: mix($npm-com-bg-button-color-black, $npm-com-bg-button-color-primary, 10%);
+    outline: none;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  & [class*="el-icon-"] {
+    & + span {
+      margin-left: r(5);
+    }
+  }
+
+  @include when(is-, disabled) {
+    &,
+    &:hover,
+    &:focus {
+      color: $npm-com-bg-color-text-placeholder;
+      cursor: not-allowed;
+      background-image: none;
+      background-color: $npm-com-bg-button-color-white;
+      border-color: $npm-com-bg-border-color-lighter;
+    }
+
+    &.npm-com-bg-button--text {
+      background-color: transparent;
+    }
+  }
+
+  @include when(is-, round) {
+    border-radius: r(20);
+    // padding: r(12) r(23);
+  }
+
+  @include when(is-, circle) {
+    border-radius: 50%;
+    // padding: r(12);
+    width: $npm-com-bg-button-height;
+  }
+
+  @include when(npm-com-bg-button--, primary) {
+    // $color, $npm-com-bg-button-color-primary, $border-color
+    color: $npm-com-bg-button-color-white;
+    background-color: $npm-com-bg-button-color-primary;
+    border-color: $npm-com-bg-button-color-primary;
+
+    &:hover,
+    &:focus {
+      background: mix($npm-com-bg-button-color-white, $npm-com-bg-button-color-primary, 20%);
+      border-color: mix($npm-com-bg-button-color-white, $npm-com-bg-button-color-primary, 20%);
+      color: $npm-com-bg-button-color-white;
+    }
+
+    &:active {
+      background: mix($npm-com-bg-button-color-black, $npm-com-bg-button-color-primary, 10%);
+      border-color: mix($npm-com-bg-button-color-black, $npm-com-bg-button-color-primary, 10%);
+      color: $npm-com-bg-button-color-white;
+      outline: none;
+    }
+
+    &.is-active {
+      background: mix($npm-com-bg-button-color-black, $npm-com-bg-button-color-primary, 10%);
+      border-color: mix($npm-com-bg-button-color-black, $npm-com-bg-button-color-primary, 10%);
+      color: $npm-com-bg-button-color-white;
+    }
+
+    &.is-disabled {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: $npm-com-bg-button-color-white;
+        background-color: mix($npm-com-bg-button-color-primary, $npm-com-bg-button-color-white);
+        border-color: mix($npm-com-bg-button-color-primary, $npm-com-bg-button-color-white);
+      }
+    }
+  }
+
+  // @include when(npm-com-bg-button--, small) {
+  //   @include button-size(r(9), r(15), r(12), r(4));
+
+  //   @include when(is-, round) {
+  //     border-radius: r(20);
+  //     padding: r(9) r(15);
+  //   }
+  
+  //   @include when(is-, circle) {
+  //     border-radius: 50%;
+  //     padding: r(9);
+  //   }
+  // }
+  // 文字按钮
+  &--text {
+    border-color: transparent;
+    color: $npm-com-bg-button-color-primary;;
+    background: transparent;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:hover,
+    &:focus {
+      color: mix($npm-com-bg-button-color-white, $npm-com-bg-button-color-primary, 20%);
+      border-color: transparent;
+      background-color: transparent;
+    }
+    &:active {
+      color: mix($npm-com-bg-button-color-black, $npm-com-bg-button-color-primary, 10%);
+      border-color: transparent;
+      background-color: transparent;
+    }
+
+    &.is-disabled,
+    &.is-disabled:hover,
+    &.is-disabled:focus {
+      border-color: transparent;
+    }
+  }
+}

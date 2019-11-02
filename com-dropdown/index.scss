@@ -1,0 +1,132 @@
+@import "../../../common/css/var.scss";
+
+@mixin when($state-prefix, $state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+.com-dropdown {
+  display: inline-block;
+  position: relative;
+  color: $--color-text-regular;
+  font-size: $--font-size-base;
+
+  & .com-dropdown__caret-button {
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    border-left: none;
+
+    &::before {
+      $gap: 5px;
+
+      content: '';
+      position: absolute;
+      display: block;
+      width: 1px;
+      top: $gap;
+      bottom: $gap;
+      left: 0;
+      background: mix(white, transparent, 50%);
+    }
+
+    &:hover {
+      &::before {
+        top: 0;
+        bottom: 0;
+      }
+    }
+
+    & .com-dropdown__icon {
+      padding-left: 0;
+    }
+  }
+
+  .el-dropdown-selfdefine { // 自定义
+    &:focus:active,
+    &:focus:not(.focusing) {
+      outline-width: 0;
+    }
+  }
+}
+
+.com-dropdown-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 10px 0;
+  margin: 5px 0;
+  background-color: $--color-white;
+  border: 1px solid $--border-color-lighter;
+  border-radius: $--border-radius-base;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+  &__item {
+    list-style: none;
+    line-height: 36px;
+    padding: 0 20px;
+    margin: 0;
+    font-size: $--font-size-base;
+    color: $--color-text-regular;
+    cursor: pointer;
+    outline: none;
+
+    &:not(.is-disabled):hover,
+    &:focus {
+      background-color: mix($--color-white, $--color-primary, 90%);
+      color: mix($--color-white, $--color-primary, 20%);
+    }
+
+    i {
+      margin-right: 5px;
+    }
+
+    &--divided {
+      $divided-offset: 6px;
+
+      position: relative;
+      margin-top: $divided-offset;
+      border-top: 1px solid $--border-color-lighter;
+
+      &::before {
+        content: "";
+        height: $divided-offset;
+        display: block;
+        margin: 0 -20px;
+        background-color: $--color-white;
+      }
+    }
+  }
+
+  @include when(is-, disabled) {
+    cursor: default;
+    color: #bbb;
+    pointer-events: none;
+  }
+
+  &--small {
+    padding: 6px 0;
+
+    &__item {
+      line-height: 27px;
+      padding: 0 15px;
+      font-size: 13px;
+
+      &.el-dropdown-menu__item--divided {
+
+        $divided-offset: 4px;
+
+        margin-top: $divided-offset;
+
+        &::before {
+          height: $divided-offset;
+          margin: 0 -15px;
+        }
+      }
+    }
+  }
+}

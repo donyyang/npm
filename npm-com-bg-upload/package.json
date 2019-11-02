@@ -1,0 +1,28 @@
+{
+  "name": "npm-com-bg-upload",
+  "version": "0.0.4",
+  "description": "后台上传组件",
+  "main": "dist/npm-com-bg-upload.js",
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.sys.bandubanxie.com/fe/npm/tree/master/npm-com-bg-upload"
+  },
+  "scripts": {
+    "i": "node ../npm-build-scripts/dist/npm-run-install.js",
+    "server": "node ../npm-build-scripts/dist/npm-run-server.js",
+    "client": "node ../npm-build-scripts/dist/npm-run-client.js",
+    "build": "node ../npm-build-scripts/dist/npm-run-build.js",
+    "readme": "node ../npm-build-scripts/dist/npm-run-readme.js",
+    "u": "node ../npm-build-scripts/dist/npm-run-update.js",
+    "p": "node ../npm-build-scripts/dist/npm-run-publish.js",
+    "up": "node ../npm-build-scripts/dist/npm-run-update-publish.js"
+  },
+  "author": "yangdongdong",
+  "license": "ISC",
+  "dependencies": {
+    "npm-build-webpack-module": "0.0.87",
+    "npm-com-bg-dialog": "0.0.4",
+    "npm-js-web-oss": "0.0.13",
+    "npm-scss-util": "0.0.53"
+  }
+}

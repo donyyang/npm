@@ -1,0 +1,41 @@
+@import "../../../common/css/var.scss";
+
+.com-select {
+  display: inline-block;
+  position: relative;
+
+  .com-select__tags > span {
+    display: contents;
+  }
+
+  &:hover {
+    .com-input__inner {
+      border-color: $--color-text-placeholder;
+    }
+  }
+
+  .com-input__inner {
+    cursor: pointer;
+    padding-right: 35px;
+
+    &:focus {
+      border-color: $--color-primary;
+    }
+  }
+
+  .com-input {
+    &.is-disabled {
+      & .com-input__inner {
+        cursor: not-allowed;
+
+        &:hover {
+          border-color: $--border-color-light;
+        }
+      }
+    }
+
+    &.is-focus .com-input__inner {
+      border-color: $--color-primary;
+    }
+  }
+}

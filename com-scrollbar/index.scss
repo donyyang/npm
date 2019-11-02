@@ -1,0 +1,141 @@
+@import "../../../common/css/var.scss";
+
+$--small-padding-vertical: r(9);
+$--small-padding-horizontal: r(15);
+$--button-small-text: r(12);
+
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  border-radius: $border-radius;
+
+  &.is-round {
+    padding: $padding-vertical $padding-horizontal;
+  }
+}
+
+@mixin button-variant($color, $background-color, $border-color) {
+  color: $color;
+  background-color: $background-color;
+  border-color: $border-color;
+
+  &:hover,
+  &:focus {
+    background: mix($--color-white, $background-color, 20%);
+    border-color: mix($--color-white, $border-color, 20%);
+    color: $color;
+  }
+
+  &:active {
+    background: mix($--color-black, $background-color, 10%);
+    border-color: mix($--color-black, $border-color, 10%);
+    color: $color;
+    outline: none;
+  }
+
+  &.is-active {
+    background: mix($--color-black, $background-color, 10%);
+    border-color: mix($--color-black, $border-color, 10%);
+    color: $color;
+  }
+
+  &.is-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: $--color-white;
+      background-color: mix($background-color, $--color-white);
+      border-color: mix($border-color, $--color-white);
+    }
+  }
+}
+
+@mixin when($state-prefix, $state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+.com-button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: 0.1s;
+  font-weight: 500;
+  user-select: none;
+
+  & + & {
+    margin-left: r(10);
+  }
+
+  @include button-size($--padding-vertical, $--padding-horizontal, $--font-size-base, 4px);
+
+  &:hover,
+  &:focus {
+    color: $--color-primary;
+    border-color: mix($--color-white, $--color-primary, 70%);
+    background-color: mix($--color-white, $--color-primary, 90%);
+  }
+
+  &:active {
+    color: mix($--color-black, $--color-primary, 10%);
+    border-color: mix($--color-black, $--color-primary, 10%);
+    outline: none;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  & [class*="el-icon-"] {
+    & + span {
+      margin-left: r(5);
+    }
+  }
+
+  @include when(is-, disabled) {
+    &,
+    &:hover,
+    &:focus {
+      color: $--color-text-placeholder;
+      cursor: not-allowed;
+      background-image: none;
+      background-color: $--color-white;
+      border-color: $--border-color-lighter;
+    }
+
+    &.com-button--text {
+      background-color: transparent;
+    }
+  }
+
+  @include when(is-, round) {
+    border-radius: r(20);
+    padding: r(12) r(23);
+  }
+
+  @include when(is-, circle) {
+    border-radius: 50%;
+    padding: r(12);
+  }
+
+  @include when(com-button--, primary) {
+    @include button-variant($--color-white, $--color-primary, $--color-primary);
+  }
+
+  @include when(com-button--, small) {
+    @include button-size($--small-padding-vertical, $--small-padding-horizontal, $--button-small-text, 4px);
+  }
+}

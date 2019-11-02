@@ -1,0 +1,193 @@
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+$item-width: r(274);
+$item-distance: r(50);
+
+.npm-com-bg-form-item {
+  margin: 0 $item-distance r(18) 0;
+  display: inline-flex;
+  align-items: center;
+  width: $item-width;
+  @include height(r(32));
+  font-size: 0;
+  white-space: nowrap;
+
+  @for $i from 1 through 10 {
+    &.span-#{$i} {
+      width: $item-width * $i + ($i - 1) * $item-distance;
+    }
+  }
+
+  > * {
+    vertical-align: middle;
+    display: inline-block;
+    @include height(r(32));
+  }
+
+  > .icon {
+    display: inline-block;
+    @include square(r(16));
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    &.department {
+      background-image: url(./icon/department.png);
+    }
+
+    &.phone {
+      background-image: url(./icon/phone.png);
+    }
+
+    &.status {
+      background-image: url(./icon/status.png);
+    }
+
+    &.time {
+      background-image: url(./icon/time.png);
+    }
+
+    &.type {
+      background-image: url(./icon/type.png);
+    }
+
+    &.user {
+      background-image: url(./icon/user.png);
+    }
+
+    &.btn {
+      background-image: url(./icon/button.png);
+    }
+
+    &.code {
+      background-image: url(./icon/code.png);
+    }
+
+    &.depart {
+      background-image: url(./icon/depart.png);
+    }
+
+    &.product {
+      background-image: url(./icon/product.png);
+    }
+
+    &.adress {
+      background-image: url(./icon/adress.png);
+    }
+
+    &.formate {
+      background-image: url(./icon/formate.png);
+    }
+
+    &.course {
+      background-image: url(./icon/course.png);
+    }
+
+    &.source {
+      background-image: url(./icon/source.png);
+    }
+
+    &.teacher {
+      background-image: url(./icon/teacher.png);
+    }
+
+    &.name {
+      background-image: url(./icon/name.png);
+    }
+
+    &.grade {
+      background-image: url(./icon/grade.png);
+    }
+
+    &.correct {
+      background-image: url(./icon/correct.png);
+    }
+
+    &.recomend {
+      background-image: url(./icon/recomend.png);
+    }
+
+    &.wechat {
+      background-image: url(./icon/wechat.png);
+    }
+
+    &.school {
+      background-image: url(./icon/school.png);
+    }
+  }
+
+  > .label {
+    position: relative;
+    margin-left: r(5);
+    width: r(84);
+    display: inline-flex;
+    text-align: right;
+    font-size: r(14);
+    color: #404049;
+
+    .is-required {
+      position: absolute;
+      left: r(-5);
+      font-size: r(14);
+      color: #FF2626;
+    }
+
+    > * {
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    .text {
+      display: block;
+      flex: 1;
+      @include ellipsis;
+      text-align: center;
+    }
+
+    .colon {
+      display: block;
+    }
+  }
+
+  > .slot {
+    margin-left: r(2);
+    flex: 1;
+    // overflow: hidden;
+  }
+
+  &.is-block {
+    display: block;
+
+    > .slot {
+      width: calc(100% - 89px);
+    }
+  }
+
+  &.height-auto {
+    height: auto;
+    align-items: flex-start;
+    white-space: normal;
+    margin-right: 0;
+
+    > .icon {
+      float: left;
+      position: relative;
+      top: r(8);
+      height: r(16);
+    } 
+
+    // > .slot {
+    //   > div {
+    //     position: relative;
+    //     top: r(7);
+    //   }
+    // }
+
+    > .label {
+      float: left;
+    }
+
+    > * {
+      height: auto;
+    }
+  }
+}

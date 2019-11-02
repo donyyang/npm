@@ -1,0 +1,116 @@
+@import "../../../common/css/var.scss";
+
+$--small-padding-vertical: r(9);
+$--small-padding-horizontal: r(15);
+$--button-small-text: r(12);
+
+.el-zoom-in-center-enter-active,
+.el-zoom-in-center-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.el-zoom-in-center-enter,
+.el-zoom-in-center-leave-active {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+@mixin when($state-prefix, $state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+.com-tag {
+  background-color: rgba($--color-primary, 0.1);
+  display: inline-block;
+  padding: 0 r(10);
+  height: r(32);
+  line-height: r(30);
+  font-size: r(12);
+  color: $--color-primary;
+  border-radius: r(4);
+  box-sizing: border-box;
+  border: 1px solid rgba($--color-primary, 0.2);
+  white-space: nowrap;
+
+  .el-icon-close {
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    font-size: r(12);
+    height: r(16);
+    width: r(16);
+    line-height: r(16);
+    vertical-align: middle;
+    top: r(-1);
+    right: r(-5);
+    color: $--color-primary;
+
+    &::before {
+      display: block;
+    }
+
+    &:hover {
+      background-color: $--color-primary;
+      color: $--color-white;
+    }
+  }
+
+  &--info {
+    background-color: rgba($--color-info, 0.1);
+    border-color: rgba($--color-info, 0.2);
+    color: $--color-info;
+
+    .com-tag__close {
+      color: $--color-info;
+    }
+
+    .com-tag__close:hover {
+      background-color: $--color-info;
+      color: $--color-white;
+    }
+  }
+
+  &--success {
+    background-color: rgba($--color-success, 0.1);
+    border-color: rgba($--color-success, 0.2);
+    color: $--color-success;
+
+    .com-tag__close {
+      color: $--color-success;
+    }
+
+    .com-tag__close:hover {
+      background-color: $--color-success;
+      color: $--color-white;
+    }
+  }
+
+  &--warning {
+    background-color: rgba($--color-warning, 0.1);
+    border-color: rgba($--color-warning, 0.2);
+    color: $--color-warning;
+
+    .com-tag__close {
+      color: $--color-warning;
+    }
+
+    .com-tag__close:hover {
+      background-color: $--color-warning;
+      color: $--color-white;
+    }
+  }
+
+  &--midium {
+    height: 28px;
+    line-height: 26px;
+
+    .el-icon-close {
+      transform: scale(0.8);
+    }
+  }
+}

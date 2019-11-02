@@ -1,0 +1,196 @@
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+$--color-text-regular: #606266 !default; 
+$--font-size-base: r(14) !default;
+$--border-radius-base: r(4) !default;
+$--border-color-base: #DCDFE6 !default;
+$--color-primary: #4F65FE !default;
+$--border-color-lighter: #EBEEF5 !default;
+$--background-color-base: #F5F7FA !default;
+$--border-color-light: #E4E7ED !default;
+$--color-text-placeholder: #C0C4CC !default;
+$--color-white: #FFFFFF !default;
+
+@mixin when($state-prefix, $state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+  
+.npm-com-bg-radio {
+  color: $--color-text-regular;
+  font-weight: 500;
+  line-height: r(32);
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  outline: none;
+  font-size: $--font-size-base;
+  margin-right: r(30);
+  user-select: none;
+
+  @include when(is-, bordered) {
+    padding: r(12) r(20) 0 r(10);
+    border-radius: $--border-radius-base;
+    border: 1px solid $--border-color-base;
+    box-sizing: border-box;
+    height: r(40);
+
+    &.is-checked {
+      border-color: $--color-primary;
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+      border-color: $--border-color-lighter;
+    }
+
+    & + .npm-com-bg-radio.is-bordered {
+      margin-left: 10px;
+    }
+  }
+
+  @include when(is-, checked) {
+    .npm-com-bg-radio__inner {
+      border-color: $--color-primary;
+      background: $--color-primary;
+
+      &::after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .npm-com-bg-radio__input + .npm-com-bg-radio__label {
+      color: $--color-primary;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &__input {
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+    line-height: 1;
+    position: relative;
+    vertical-align: middle;
+
+    & + .npm-com-bg-radio__label {
+      padding-left: r(5);
+    }
+
+    @include when(is-, disabled) {
+      .npm-com-bg-radio__inner {
+        background-color: $--background-color-base;
+        border-color: $--border-color-light;
+        cursor: not-allowed;
+
+        &::after {
+          cursor: not-allowed;
+          background-color: $--background-color-base;
+        }
+
+        & + .npm-com-bg-radio__label {
+          cursor: not-allowed;
+        }
+      }
+
+      &.is-checked {
+        .npm-com-bg-radio__inner {
+          background-color: $--background-color-base;
+          border-color: $--border-color-light;
+
+          &::after {
+            background-color: $--color-text-placeholder;
+          }
+        }
+      }
+
+      & + span.npm-com-bg-radio__label {
+        color: $--color-text-placeholder;
+        cursor: not-allowed;
+      }
+    }
+
+    // @include when(is-, checked) {
+    //   .npm-com-bg-radio__inner {
+    //     border-color: $--color-primary;
+    //     background: $--color-primary;
+
+    //     &::after {
+    //       transform: translate(-50%, -50%) scale(1);
+    //     }
+    //   }
+
+    //   & + .npm-com-bg-radio__label {
+    //     color: $--color-primary;
+    //   }
+    // }
+
+    @include when(is-, focus) {
+      .npm-com-bg-radio__inner {
+        border-color: $--color-primary;
+      }
+    }
+  }
+
+  &__inner {
+    border: 1px solid $--border-color-base;
+    border-radius: 100%;
+    width: r(14);
+    height: r(14);
+    background-color: $--color-white;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+
+    &:hover {
+      border-color: $--color-primary;
+    }
+
+    &::after {
+      width: 4px;
+      height: 4px;
+      border-radius: 100%;
+      background-color: $--color-white;
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.15s ease-in;
+    }
+  }
+
+  &__original {
+    opacity: 0;
+    outline: none;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+  }
+
+  &:focus:not(.is-focus):not(:active):not(.is-disabled) {
+    .npm-com-bg-radio__inner {
+      box-shadow: 0 0 2px 2px $--color-primary;
+    }
+  }
+}
+
+.npm-com-bg-radio-group {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 0;
+}

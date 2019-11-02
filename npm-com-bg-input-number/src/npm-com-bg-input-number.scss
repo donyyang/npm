@@ -1,0 +1,62 @@
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+// 样式变量
+$npm-com-bg-input-height: r(32);
+$npm-com-bg-input-border-width: r(1);
+
+.npm-com-bg-input-number {
+  display: inline-flex;
+  @include height($npm-com-bg-input-height);
+  width: 100%;
+  box-sizing: border-box;
+  border: $npm-com-bg-input-border-width solid #CACBDA;
+  border-radius: r(4);
+  background-color: #fff;
+  overflow: hidden;
+
+  .minus-btn,
+  .input,
+  .plus-btn {
+    @include height($npm-com-bg-input-height - $npm-com-bg-input-border-width * 2);
+    display: block;
+    text-align: center;
+  }
+
+  .minus-btn,
+  .plus-btn {
+    width: $npm-com-bg-input-height;
+    background-color: #f5f7fa;
+    user-select: none;
+    cursor: pointer;
+    font-size: r(14);
+
+    &:not(.disabled):hover {
+      background-color: #4f65fe;
+      color: #fff;
+    }
+
+    &:not(.disabled):active {
+      background-color: #4f65fe;
+      color: #fff;
+      opacity: 0.8;
+    }
+
+  }
+
+  .minus-btn {
+    border-right: $npm-com-bg-input-border-width solid #CACBDA;
+  }
+
+  .input {
+    width: 0;
+    flex: 1;
+    border: none;
+    color: #404049;
+    font-size: r(14);
+  }
+
+  .plus-btn {
+    border-left: $npm-com-bg-input-border-width solid #CACBDA;
+  }
+
+}

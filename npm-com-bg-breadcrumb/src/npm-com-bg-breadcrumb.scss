@@ -1,0 +1,49 @@
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+.npm-com-bg-breadcrumb {
+  font-size: r(14);
+  color: #9192A9;
+  line-height: r(20);
+
+  &__inner {
+    cursor: no-drop;
+  }
+
+  .is-link:hover {
+    cursor: pointer;
+    color: #4F65FE;
+
+    &:hover,&:focus{
+      color: #2D44E5;
+    }
+
+    &:active{
+      color: #2D44E5;
+    }
+  }
+
+  .current-breadcrumb {
+    cursor: auto;
+    color: #4F65FE;
+
+    &:hover,&:focus{
+      color: #2D44E5;
+    }
+
+    &:active{
+      color: #2D44E5;
+    }
+  }
+
+  &__separator {
+    margin: 0 r(3);
+  }
+
+  .separatorClass {
+    display: inline-block;
+    width: r(5);
+    height: r(8);
+    background: url(./icon/bread_icon.png) no-repeat;
+    background-size: 100%;
+  }
+}

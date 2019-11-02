@@ -1,0 +1,26 @@
+{
+  "name": "npm-com-bg-form-item-title",
+  "version": "0.0.4",
+  "description": "用于表单统一标题",
+  "main": "dist/npm-com-bg-form-item-title.js",
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.sys.bandubanxie.com/fe/npm/tree/master/npm-com-bg-form-item-title"
+  },
+  "scripts": {
+    "i": "node ../npm-build-scripts/dist/npm-run-install.js",
+    "server": "node ../npm-build-scripts/dist/npm-run-server.js",
+    "client": "node ../npm-build-scripts/dist/npm-run-client.js",
+    "build": "node ../npm-build-scripts/dist/npm-run-build.js",
+    "readme": "node ../npm-build-scripts/dist/npm-run-readme.js",
+    "u": "node ../npm-build-scripts/dist/npm-run-update.js",
+    "p": "node ../npm-build-scripts/dist/npm-run-publish.js",
+    "up": "node ../npm-build-scripts/dist/npm-run-update-publish.js"
+  },
+  "author": "caodan",
+  "license": "ISC",
+  "dependencies": {
+    "npm-build-webpack-module": "0.0.87",
+    "npm-scss-util": "0.0.53"
+  }
+}

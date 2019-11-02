@@ -1,0 +1,15 @@
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+.npm-com-bg-form-item-title {
+  display: flex;
+  .title-icon {
+    width: r(4);
+    background: rgba(79, 101, 254, 1);
+    margin-right: r(10);
+  }
+  .title{
+    font-weight: 500;
+    color: rgba(64,64,73,1);
+    font-size: r(16);
+  }
+}

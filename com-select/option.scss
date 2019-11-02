@@ -1,0 +1,47 @@
+@import "../../../common/css/var.scss";
+
+.com-select-dropdown {
+  position: absolute;
+  z-index: 1001;
+  border: 1px solid $--border-color-light;
+  border-radius: $--border-radius-base;
+  background-color: $--color-white;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin: 5px 0;
+
+  .com-scrollbar.is-empty .com-select-dropdown__list {
+    padding: 0;
+  }
+
+  &__item {
+    font-size: $--font-size-base;
+    padding: 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $--color-text-regular;
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &.hover,
+    &:hover {
+      background-color: $--background-color-base;
+    }
+
+    &.selected {
+      color: $--color-primary;
+      font-weight: bold;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding: 6px 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}

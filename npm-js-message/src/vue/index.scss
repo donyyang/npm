@@ -1,0 +1,115 @@
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+$--border-radius-base: 4px !default;
+$--border-color-lighter: #EBEEF5 !default;
+$--color-white: #fff !default;
+$--color-success: #67C23A !default;
+$--color-warning: #E6A23C !default;
+$--color-danger: #F56C6C !default;
+$--color-info: #909399 !default;
+
+@mixin when($state-prefix, $state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+.com-message {
+  min-width: r(380);
+  box-sizing: border-box;
+  border-radius: $--border-radius-base;
+  border: 1px solid $--border-color-lighter;
+  position: fixed;
+  left: 50%;
+  top: r(20);
+  transform: translateX(-50%);
+  background-color: #edf2fc;
+  transition: opacity 0.3s, transform 0.4s, top 0.4s;
+  overflow: hidden;
+  padding: r(15) r(15) r(15) r(20);
+  display: flex;
+  align-items: center;
+  // 应该分层de
+  z-index: 10;
+
+  @include when(is-, closable) {
+    .com-message__content {
+      padding-right: r(16);
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  &--info {
+    .com-message__content {
+      color: $--color-info;
+    }
+  }
+
+  &--success {
+    background-color: mix($--color-white, $--color-success, 90%);
+    border-color: mix($--color-white, $--color-success, 80%);
+
+    .com-message__content {
+      color: $--color-success;
+    }
+  }
+
+  &--warning {
+    background-color: mix($--color-white, $--color-warning, 90%);
+    border-color: mix($--color-white, $--color-warning, 80%);
+
+    .com-message__content {
+      color: $--color-warning;
+    }
+  }
+
+  &--error {
+    background-color: mix($--color-white, $--color-danger, 90%);
+    border-color: mix($--color-white, $--color-danger, 80%);
+
+    .com-message__content {
+      color: $--color-danger;
+    }
+  }
+
+  &__icon {
+    margin-right: r(10);
+  }
+
+  &__content {
+    padding: 0;
+    font-size: r(14);
+    line-height: 1;
+
+    &:focus {
+      outline-width: 0;
+    }
+  }
+
+  & .com-icon-success {
+    color: $--color-success;
+  }
+
+  & .com-icon-error {
+    color: $--color-danger;
+  }
+
+  & .com-icon-info {
+    color: $--color-info;
+  }
+
+  & .com-icon-warning {
+    color: $--color-warning;
+  }
+}
+
+.com-message-fade-enter,
+.com-message-fade-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}

@@ -1,0 +1,159 @@
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+$npm-com-bg-input-color-primary: #4F65FE !default;
+$npm-com-bg-input-font-size-base: r(14) !default;
+$npm-com-bg-input-color-text-placeholder: #c0c4cc !default;
+$npm-com-bg-input-color-white: #fff !default;
+$npm-com-bg-input-border-radius-base: r(4) !default;
+$npm-com-bg-input-border-transition-base: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !default;
+$npm-com-bg-input-color-transition-base: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !default;
+$npm-com-bg-border-color-base:#dcdfe6 !default;
+$npm-com-bg-input-border-color-lighter: #ebeef5 !default;
+$npm-com-bg-input-background-color-base: #f5f7fa !default;
+$npm-com-bg-input-color-text-secondary: #909399 !default;
+$npm-com-bg-input-color-text-regular: #606266 !default;
+$npm-com-bg-input-base-height: r(32) !default;
+$npm-com-bg-input-border: 1px solid $npm-com-bg-border-color-base;
+
+@mixin when($state-prefix, $state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+.npm-com-bg-input {
+  position: relative;
+  font-size: $npm-com-bg-input-font-size-base;
+  display: inline-block;
+  width: 100%;
+  // height: $npm-com-bg-input-base-height;
+  // line-height: $npm-com-bg-input-base-height;
+
+  &__inner {
+    -webkit-appearance: none;
+    background-color: $npm-com-bg-input-color-white;
+    background-image: none;
+    border-radius: $npm-com-bg-input-border-radius-base;
+    border: $npm-com-bg-input-border;
+    box-sizing: border-box;
+    color: $npm-com-bg-input-color-text-regular;
+    display: inline-block;
+    font-size: inherit;
+    height: $npm-com-bg-input-base-height;
+    line-height: $npm-com-bg-input-base-height;
+    outline: none;
+    padding: 0 r(15);
+    transition: $npm-com-bg-input-border-transition-base;
+    width: 100%;
+
+    &::placeholder {
+      color: $npm-com-bg-input-color-text-placeholder;
+    }
+
+    &:hover {
+      border-color: $npm-com-bg-input-color-text-placeholder;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $npm-com-bg-input-color-primary;
+    }
+  }
+
+  &__suffix {
+    position: absolute;
+    height: 100%;
+    right: r(5);
+    top: 0;
+    text-align: center;
+    color: $npm-com-bg-input-color-text-placeholder;
+    transition: all 0.3s;
+    pointer-events: none;
+
+    &-inner {
+      pointer-events: all;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    height: 100%;
+    width: r(20);
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    line-height: $npm-com-bg-input-base-height;
+
+    &::after {
+      content: '';
+      height: 100%;
+      width: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  &__showPwd {
+    background: url(./icon/showPwd.png) no-repeat;
+    background-size: 100%;
+    background-position: center;
+  }
+
+  &__clear {
+    width: r(15);
+    background: url(./icon/clear.png) no-repeat;
+    background-size: 100%;
+    background-position: center;
+  }
+
+  @include when(is-, active) {
+    .npm-com-bg-input__inner {
+      outline: none;
+      border-color: $npm-com-bg-input-color-primary;
+    }
+  }
+
+  @include when(is-, disabled) {
+    .npm-com-bg-input__inner {
+      background-color: $npm-com-bg-input-background-color-base;
+      border-color: $npm-com-bg-input-border-color-lighter;
+      color: $npm-com-bg-input-color-text-placeholder;
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: $npm-com-bg-input-color-text-placeholder;
+      }
+    }
+
+    .npm-com-bg-input__icon {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.npm-com-bg-textarea {
+  &__inner {
+    display: block;
+    resize: vertical;
+    padding: 5px 15px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: inherit;
+    color: $npm-com-bg-input-color-text-regular;
+    background-color: $npm-com-bg-input-color-white;
+    background-image: none;
+    border: $npm-com-bg-input-border;
+    border-radius: $npm-com-bg-input-border-radius-base;
+    transition: $npm-com-bg-input-border-transition-base;
+  }
+}
+
+/** disalbe default clear on IE */
+.com-input__inner::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}

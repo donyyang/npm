@@ -1,0 +1,309 @@
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+.npm-com-bg-pagination {
+
+}
+@import 'npm-scss-util/src/npm-scss-util.scss';
+
+$--color-primary: #4F65FE !default;
+$--color-white: #fff !default;
+$--color-info:#909399 !default;
+$--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
+$--color-text-regular: #606266 !default;
+$--color-text-placeholder: #C0C4CC !default;
+$--pagination-font-color: #303133 !default;
+$--color-text-primary: #303133 !default;
+
+@mixin when($prefix, $state) {
+  @at-root {
+    &.#{$prefix + $state} {
+      @content;
+    }
+  }
+}
+
+@mixin utils-clearfix {
+  $selector: &;
+
+  @at-root {
+    #{$selector}::before,
+    #{$selector}::after {
+      display: block;
+      content: '';
+    }
+
+    #{$selector}::after {
+      clear: both;
+    }
+  }
+}
+
+.npm-com-bg-pagination {
+  white-space: nowrap;
+  padding: r(2) r(5);
+  color: $--pagination-font-color;
+  font-weight: bold;
+  @include utils-clearfix;
+
+  .btn-prev,
+  .btn-next,
+  .pagination-pager li,
+  .pagination-pager li.btn-quicknext,
+  .pagination-pager li.btn-quickprev,
+  .pagination-pager li:last-child {
+    border-color: transparent;
+    font-size: r(13);
+    line-height: r(28);
+    height: r(28);
+    min-width: r(35);
+  }
+
+  .arrow.disabled {
+    visibility: hidden;
+  }
+
+  .more::before,
+  li.more::before {
+    line-height: r(24);
+  }
+
+  span:not([class*=suffix]),
+  button {
+    height: r(28);
+    line-height: r(28);
+  }
+
+  span:not([class*=suffix]),
+  button {
+    display: inline-block;
+    font-size: r(13);
+    min-width: r(35);
+    height: r(28);
+    line-height: r(28);
+    vertical-align: top;
+    box-sizing: border-box;
+  }
+
+  button {
+    border: none;
+    padding: 0 6px;
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      color: $--color-primary;
+    }
+
+    &:disabled {
+      color: $--color-text-placeholder;
+      background-color: $--color-white;
+      cursor: not-allowed;
+    }
+  }
+
+  .btn-prev,
+  .btn-next {
+    background-size: r(16);
+    background-image: url(./icon/left_one.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: $--color-white;
+    cursor: pointer;
+    margin: 0;
+    color: $--color-text-primary;
+
+    &:hover {
+      background-image: url(./icon/left_active.png);
+    }
+
+    .el-icon {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+
+  .btn-prev {
+    padding-right: 12px;
+  }
+
+  .btn-next {
+    padding-left: 12px;
+    transform: rotate(180deg);
+  }
+
+  .pagination-total {
+    margin-right: 10px;
+    font-weight: normal;
+    color: $--color-text-regular;
+  }
+
+  @at-root .pagination-pager {
+    user-select: none;
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+
+    .more::before {
+      line-height: 30px;
+    }
+  
+    li {
+      padding: 0 4px;
+      background: $--color-white;
+      vertical-align: top;
+      display: inline-block;
+      font-size: r(13);
+      min-width: r(35);
+      height: r(28);
+      line-height: r(28);
+      cursor: pointer;
+      box-sizing: border-box;
+      text-align: center;
+      margin: 0;
+  
+      &.btn-quicknext,
+      &.btn-quickprev {
+        line-height: 28px;
+        color: $--color-text-primary;
+  
+        &.disabled {
+          color: $--color-text-placeholder;
+        }
+      }
+  
+      &.btn-quickprev:hover {
+        cursor: pointer;
+      }
+  
+      &.btn-quicknext:hover {
+        cursor: pointer;
+      }
+  
+      &.active + li {
+        border-left: 0;
+      }
+  
+      &:hover {
+        color: $--color-primary;
+      }
+  
+      &.active {
+        color: $--color-primary;
+        cursor: default;
+      }
+    }
+    
+    .btn-quickprev,
+    .btn-quicknext {
+      width: r(15);
+      height: r(15);
+      background-image: url(./icon/more.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 40%;
+
+      &:hover {
+        background-image: url(./icon/left.png);
+      }
+    }
+
+    .btn-quickprev:hover {
+      transform: rotate(180deg);
+    }
+  }
+
+  @include when(is-, background) {
+    .btn-prev,
+    .btn-next,
+    .pagination-pager li {
+      background-color: $--color-info-lighter;
+      color: $--color-text-regular;
+      min-width: r(30);
+      border-radius: r(2);
+      margin: 0 r(3);
+
+      &.disabled {
+        color: $--color-text-placeholder;
+      }
+    }
+
+    .btn-prev,
+    .btn-next {
+      padding: 0;
+
+      &:disabled {
+        color: $--color-text-placeholder;
+      }
+    }
+
+    .pagination-pager li:not(.disabled) {
+      &:hover {
+        color: $--color-primary;
+      }
+
+      &.active {
+        background-color: $--color-primary;
+        color: $--color-white;
+      }
+    }
+  }
+
+  @at-root .pagination_jump {
+    margin-left: r(24);
+    font-weight: 400;
+    color: #606266;
+
+    .pagination-input {
+      position: relative;
+      font-size: r(14);
+      width: r(50);
+      display: inline-block;
+      line-height: r(18);
+      padding: 0 r(2);
+      height: r(28);
+      text-align: center;
+      margin: 0 r(2);
+      box-sizing: border-box;
+      border-radius: r(3);
+    }
+
+    .jump_text {
+      min-width: auto;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    
+    .input-inner {
+      -webkit-appearance: none;
+      background-color: #fff;
+      background-image: none;
+      border-radius: 4px;
+      border: 1px solid #dcdfe6;
+      box-sizing: border-box;
+      text-align: center;
+      color: #606266;
+      display: inline-block;
+      font-size: inherit;
+      height: r(28);
+      line-height: normal;
+      outline: none;
+      padding: 0 r(3);
+      transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+      width: 100%;
+    }
+  }
+}
